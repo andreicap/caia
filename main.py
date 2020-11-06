@@ -36,6 +36,11 @@ def get_text_topic(speech_text):
         if token_score[1] > max_score:
             max_score = token_score[1]
             selected_topic = topic
+    # special case, swiss market index
+    token_score = process.extractOne(speech_text, ["swiss","market","index"], scorer=fuzz.partial_ratio)
+    if token_score[1] > max_score:
+        max_score = token_score[1]
+        selected_topic = "smi"
     if selected_topic == "no_topic":
         error_statement()
     return selected_topic
@@ -50,8 +55,12 @@ def extract_text_loop():
     analyze_text_loop(topic)
 
 def analyze_text_loop(topic):
-    potential_sentences = sentences[topic]
-    text_output = random.choice(potential_sentences)
+    text_output = ""
+    if topic == "smi":
+        text_output = "The SMI index is at " + str(get_stock_price('%5ESSMI')) + " today with an increase of " + str(get_stock_percent('%5ESSMI'))+ " percentage" 
+    else:
+        potential_sentences = sentences[topic]
+        text_output = random.choice(potential_sentences)
     text_output = text_output.format(**client_data.iloc[0].map(num2words).to_dict())
     speaker_obj.speak_text(text_output)
     speaker_obj.speak_text("Next question, please")
