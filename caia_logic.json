@@ -3,14 +3,14 @@
 		"topic_assets": ["assets", "asset","money","account"],
 		"topic_investments": ["investments","performance","stocks","fund"],
 		"topic_nba": ["suggest","suggestion","recommend","recommendation"],
-		"topic_topup": ["topup","mandate","top ups","manage"],
+		"topic_topup": ["Top-Up","mandate","top ups","manage", "managed", "top-up"],
 		"topic_pillar": ["pillar", "pension", "retirement", "3A"],
 		"topic_mortgage": ["mortgage"],
 		"topic_transactions": ["transaction", "transactions", "card", "spending", "expenses"],
 		"topic_bills": ["bill", "e-bill",  "subscription", "bills"],
 		"topic_end": ["good bye", "goodbye", "bye", "ciao"],
 		"topic_about": ["yourself", "yourselves", "aboutyou"],
-		"topic_revolut": ["revolut"]
+		"topic_revolut": ["revolut", "revolution"]
 	},
 	
 	"sentences":{
@@ -19,7 +19,7 @@
 		"topic_investments": ["Your investments are performing {data_investments} percent",
 							  "You have a {data_investments} percent in your investments today"],
 		"topic_nba": ["Based on your banking profile, I highly advise to do a topup in your UBS manage account."],
-		"topic_topupub": ["With a delegation solution, you automatically benefit from our comprehensive investment expertise. We constantly monitor and optimize your portfolio, and coordinate it perfectly with the investment strategy agreed with you. This gives you simple and convenient access to the best and most up-to-date market evaluations."],
+		"topic_topup": ["With a delegation solution, you automatically benefit from our comprehensive investment expertise. We constantly monitor and optimize your portfolio, and coordinate it perfectly with the investment strategy agreed with you. This gives you simple and convenient access to the best and most up-to-date market evaluations."],
 		"topic_pillar": ["You have {data_pillar_amount} swiss francs in your pillar 3A and is performing {data_pillar_investments} percent",
 					     "Your pillar 3A is performing {data_pillar_investments} percent, you have now {data_pillar_amount} swiss francs"],
 		"topic_mortgage": ["You have a mortgage of {data_mortgage}",
