@@ -1,4 +1,4 @@
-from voice_parser import extract_text
+from voice_parser import Listener
 import pandas as pd
 from fuzzywuzzy import fuzz
 import speech_recognition as sr
@@ -12,6 +12,7 @@ client_data.loc[0, 'name'] = "Andrei Cap"
 client_data['liquidity'] = 999999.0
 client_data['investments'] = 186.6
 client_data['currency'] = 'CHF'
+listener = Listener()
 
 def get_text_topic(speech_text):
     ratio = fuzz.partial_ratio(speech_text, "assets")
@@ -19,7 +20,7 @@ def get_text_topic(speech_text):
         return "assets"
 
 def extract_text_loop():
-    speech_text = extract_text()
+    speech_text = listener.extract_text()
     topic = get_text_topic(speech_text)
     analyze_text_loop(topic)
 
