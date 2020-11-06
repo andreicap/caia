@@ -54,7 +54,7 @@ def analyze_text_loop(topic):
     text_output = random.choice(potential_sentences)
     text_output = text_output.format(**client_data.iloc[0].map(num2words).to_dict())
     speaker_obj.speak_text(text_output)
-    speaker_obj.speak_text("Next question, please")
+    speaker_obj.speak_text("Do you have any other question?")
     print('next question')
     extract_text_loop()
 
