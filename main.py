@@ -31,6 +31,7 @@ def error_statement():
 def say_what_again():
     text = "Say 'what' again. Say 'what' again, I dare you, I double dare you motherfucker, say what one more Goddamn time!"
     speaker_obj.speak_text(text)
+    extract_text_loop()
 
 
 def get_text_topic(speech_text):
