@@ -5,20 +5,22 @@
 		"topic_pillar": ["pillar", "pension", "retirement", "3A"],
 		"topic_mortgage": ["mortgage"],
 		"topic_transactions": ["transaction", "transactions", "card", "spending", "expenses"],
-		"topic_bills": ["bill", "e-bill",  "subscription", "bills"]
+		"topic_bills": ["bill", "e-bill",  "subscription", "bills"],
+		"topic_end": ["good bye", "bye", "thank you", "ciao"]
 	},
 	
 	"sentences":{
-		"topic_assets": ["Your assets are {data_assets}",
-						 "Your have {data_assets} in assets"],
+		"topic_assets": ["Your assets are {data_assets} swiss francs",
+						 "You have {data_assets} in assets"],
 		"topic_investments": ["Your investments are performing {data_investments} percent",
-							  "Your have a {data_investments} percent in your investments today"],
-		"topic_pillar": ["Your have {data_pillar_amount} in your pillar 3A and is performing {data_pillar_investments} percent",
+							  "You have a {data_investments} percent in your investments today"],
+		"topic_pillar": ["You have {data_pillar_amount} in your pillar 3A and is performing {data_pillar_investments} percent",
 					     "Your pillar 3A is performing {data_pillar_investments} percent, you have now {data_pillar_amount}"],
 		"topic_mortgage": ["You have a mortgage of {data_mortgage}",
 						   "Your mortgage is {data_mortgage}"],
 		"topic_transactions":["You have made {data_trx_number} transactions in the last month, for a total of {data_trx_amount} swiss francs spent",
 							  "You have spent {data_trx_amount} swiss francs in the last month, and you have done {data_trx_number} transactions"],
-		"topic_bills":["You have to bills for {data_bills1} and {data_bills2} for the amount of {data_bills_total}"]
+		"topic_bills":["You have to bills for {data_bills1} and {data_bills2} for the amount of {data_bills_total} swiss francs"],
+		"topic_end":["Glad to be helpful, {data_name}! Have a good day!"]
 	}
 }

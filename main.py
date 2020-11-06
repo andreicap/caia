@@ -16,6 +16,11 @@ topics = json.load(open("caia_logic.json"))['topics']
 sentences = json.load(open("caia_logic.json"))['sentences']
 
 client_data = pd.read_csv('caia_sample_dataset.csv')
+for col in client_data.columns:
+    try:
+        client_data[col] = client_data[col].map(num2words)
+    except:
+        pass
 
 def error_statement():
     text = "I did not understand that, can you repeat please?"
@@ -57,16 +62,19 @@ def extract_text_loop():
 def analyze_text_loop(topic):
     text_output = ""
     if topic == "smi":
-        perc = get_stock_percent('%5ESSMI')
-        text_output = rf'The SMI index is at {str(get_stock_price("%5ESSMI"))} today with {str("an increase" if perc > 0 else "a decrease")} of {perc} percentage'
+        perc = get_stock_percent(r'%5ESSMI')
+        price = str(get_stock_price(r'%5ESSMI'))
+        text_output = rf'The SMI index is at {price} today with {str("an increase" if perc > 0 else "a decrease")} of {abs(perc)} percentage'
     else:
         potential_sentences = sentences[topic]
         text_output = random.choice(potential_sentences)
-    try:
-        text_output = text_output.format(**client_data.iloc[0].map(num2words).to_dict())
-    except:
-        text_output = text_output.format(**client_data.iloc[0].to_dict())
+
+
+    text_output = text_output.format(**client_data.iloc[0].to_dict())
     speaker_obj.speak_text(text_output)
+    if topic == 'topic_end':
+        exit()
+
     next_questions = ["Do you have any other question?", "Can I help you with something else?", "Do you have other questions?"]
     speaker_obj.speak_text(random.choice(next_questions))
     print('next question')
@@ -87,6 +95,6 @@ def get_stock_percent(stock_ticker):
 
 if __name__ == "__main__":
     # intro_string = "Hi, I am Ka-ya, and I will be you client advisor today! How can I help you?"
-    intro_string = "Hi, I am Kah-yah! How can I help you?"
+    intro_string = f"Hi {client_data['data_name'].iloc[0]}, I am Kah-yah! How can I help you?"
     speaker_obj.speak_text(intro_string)
     extract_text_loop()
