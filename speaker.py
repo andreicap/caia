@@ -9,7 +9,7 @@ class Speaker():
     def __init__(self):
         self.engine = pyttsx3.init()
         self.change_voice(0)
-        self.change_voice_speed(250)
+        self.change_voice_speed(230)
 
     def speak_text(self, text):
         print(f"CAIA >> {text}")

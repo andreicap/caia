@@ -59,7 +59,6 @@ def analyze_text_loop(topic):
     if topic == "smi":
         perc = get_stock_percent('%5ESSMI')
         text_output = "The SMI index is at " + str(get_stock_price('%5ESSMI')) + " today with " + str("an increase" if perc > 0 else "a decrease") + " of " + str(get_stock_percent('%5ESSMI'))+ " percentage" 
-
     else:
         potential_sentences = sentences[topic]
         text_output = random.choice(potential_sentences)
@@ -68,7 +67,8 @@ def analyze_text_loop(topic):
     except:
         text_output = text_output.format(**client_data.iloc[0].to_dict())
     speaker_obj.speak_text(text_output)
-    speaker_obj.speak_text("Do you have any other question?")
+    next_questions = ["Do you have any other question?", "Can I help you with something else?", "Do you have other questions?"]
+    speaker_obj.speak_text(random.choice(next_questions))
     print('next question')
     extract_text_loop()
 
@@ -87,6 +87,6 @@ def get_stock_percent(stock_ticker):
 
 if __name__ == "__main__":
     # intro_string = "Hi, I am Ka-ya, and I will be you client advisor today! How can I help you?"
-    intro_string = "Hi, I am Ka-ya! How can I help you?"
+    intro_string = "Hi, I am Kah-yah! How can I help you?"
     speaker_obj.speak_text(intro_string)
     extract_text_loop()
