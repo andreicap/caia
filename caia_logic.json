@@ -1,0 +1,14 @@
+{
+	"topics":{
+		"topic_assets": ["assets","asset","money","account"],
+		"topic_investments": ["investments","performance","stocks","fund"]
+	},
+	
+	"sentences":{
+		"topic_assets": ["Your assets are {data_assets}",
+						 "Your have {data_assets} in assets"],
+		"topic_investments": ["Your investments are performing {data_investments}",
+							  "Your have a {data_investments} in your investments today"]
+	}
+	
+}
