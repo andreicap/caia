@@ -1,0 +1,5 @@
+num2words
+fuzzywuzzy
+pyttsx3
+pandas
+SpeechRecognition
