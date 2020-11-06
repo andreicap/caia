@@ -5,6 +5,21 @@ import speech_recognition as sr
 		- speech_recognition
 """
 
+def extract_text():
+	text = None
+	r = sr.Recognizer()
+	with sr.Microphone() as source:
+		r.adjust_for_ambient_noise(source)
+		print("Please speak")
+		audio = r.listen(source)
+		try:
+			text = r.recognize_google(audio)
+			print("Text recognized: \n" + text)
+		except Exception as e:
+			print("Error " + str(e))
+	return text
+
+
 def listen_command():
 	r = sr.Recognizer()
 	with sr.Microphone() as source:
