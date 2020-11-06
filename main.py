@@ -23,8 +23,9 @@ for col in client_data.columns:
         pass
 
 def error_statement():
-    text = "I did not understand that, can you repeat please?"
-    speaker_obj.speak_text(text)
+    texts =["I didn't get this, but my developers will teach me later. Can you repeat please?",
+    "I didn't quite get that. Again?"]
+    speaker_obj.speak_text(random.choice(texts))
     extract_text_loop()
 
 

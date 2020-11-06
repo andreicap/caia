@@ -3,7 +3,7 @@
 		"topic_assets": ["assets", "asset","money","account"],
 		"topic_investments": ["investments","performance","stocks","fund"],
 		"topic_nba": ["suggest","suggestion","recommend","recommendation"],
-		"topic_topup": ["Top-Up","mandate","top ups","manage", "managed", "top-up"],
+		"topic_topup": ["Top-Up","mandate","top ups","manage", "managed", "Top-Up"],
 		"topic_pillar": ["pillar", "pension", "retirement", "3A"],
 		"topic_mortgage": ["mortgage"],
 		"topic_transactions": ["transaction", "transactions", "card", "spending", "expenses"],
