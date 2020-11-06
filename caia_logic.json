@@ -7,7 +7,8 @@
 		"topic_transactions": ["transaction", "transactions", "card", "spending", "expenses"],
 		"topic_bills": ["bill", "e-bill",  "subscription", "bills"],
 		"topic_end": ["good bye", "goodbye", "bye", "thank you", "thanks", "ciao"],
-		"topic_about": ["yourself", "yourselves", "aboutyou"]
+		"topic_about": ["yourself", "yourselves", "aboutyou"],
+		"topic_revolut": ["revolut"]
 	},
 	
 	"sentences":{
@@ -23,6 +24,7 @@
 							  "You have spent {data_trx_amount} swiss francs in the last month, and you have done {data_trx_number} transactions"],
 		"topic_bills":["You have to bills for {data_bills1} and {data_bills2} for the amount of {data_bills_total} swiss francs"],
 		"topic_end":["Glad to be helpful, {data_name}! Have a good day!"],
-		"topic_about":["I am your personal A.I. client advisor. You can ask me about any banking related topics like your assets, bills, stock market and much more."]
+		"topic_about":["I am your personal A.I. client advisor. You can ask me about any banking related topics like your assets, bills, stock market and much more."],
+		"topic_revolut": ["Revolut? What is this revolut you are talking about? I do not know anything about it."]
 	}
 }
