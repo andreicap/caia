@@ -4,7 +4,8 @@
 		"topic_investments": ["investments","performance","stocks","fund"],
 		"topic_pillar": ["pillar", "pension", "retirement", "3A"],
 		"topic_mortgage": ["mortgage"],
-		"topic_transactions": ["transaction", "transactions", "card", "spending", "expenses"]
+		"topic_transactions": ["transaction", "transactions", "card", "spending", "expenses"],
+		"topic_bills": ["bill", "e-bill",  "subscription", "bills"]
 	},
 	
 	"sentences":{
@@ -17,6 +18,7 @@
 		"topic_mortgage": ["You have a mortgage of {data_mortgage}",
 						   "Your mortgage is {data_mortgage}"],
 		"topic_transactions":["You have made {data_trx_number} transactions in the last month, for a total of {data_trx_amount} swiss francs spent",
-							  "You have spent {data_trx_amount} swiss francs in the last month, and you have done {data_trx_number} transactions"]
+							  "You have spent {data_trx_amount} swiss francs in the last month, and you have done {data_trx_number} transactions"],
+		"topic_bills":["You have to bills for {data_bills1} and {data_bills2} for the amount of {data_bills_total}"]
 	}
 }
