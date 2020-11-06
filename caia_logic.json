@@ -18,4 +18,5 @@
 						   "Your mortgage is {data_mortgage}"],
 		"topic_transactions":["You have made {data_trx_number} transactions in the last month, for a total of {data_trx_amount} swiss francs spent",
 							  "You have spent {data_trx_amount} swiss francs in the last month, and you have done {data_trx_number} transactions"]
+	}
 }
