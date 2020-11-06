@@ -26,7 +26,7 @@ def analyze_text_loop(topic):
         assets_text = f"Your total assets are {total_assets}"
         #speak_text()
         print(assets_text)
-        extract_text_loop()
+    extract_text_loop()
 
 if __name__ == "__main__":
     extract_text_loop()
