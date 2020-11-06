@@ -29,10 +29,10 @@ def say_what_again():
 
 
 def get_text_topic(speech_text):
-    max_score = 20
+    max_score = 70
     selected_topic = "no_topic"
     for topic, tokens in topics.items():
-        token_score = process.extractOne(speech_text, tokens, scorer=fuzz.partial_ratio)
+        token_score = process.extractOne(speech_text, tokens, scorer=fuzz.token_set_ratio)
         if token_score[1] > max_score:
             max_score = token_score[1]
             selected_topic = topic
@@ -55,6 +55,7 @@ def analyze_text_loop(topic):
     text_output = text_output.format(**client_data.iloc[0].map(num2words).to_dict())
     speaker_obj.speak_text(text_output)
     speaker_obj.speak_text("Next question, please")
+    print('next question')
     extract_text_loop()
 
 
@@ -71,6 +72,7 @@ def get_stock_percent(stock_ticker):
 
 
 if __name__ == "__main__":
-    intro_string = "Hi, I am Ka-ya, and I will be you client advisor today! How can I help you?"
+    # intro_string = "Hi, I am Ka-ya, and I will be you client advisor today! How can I help you?"
+    intro_string = "Hi, I am Ka-ya! How can I help you?"
     speaker_obj.speak_text(intro_string)
     extract_text_loop()
