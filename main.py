@@ -57,7 +57,9 @@ def extract_text_loop():
 def analyze_text_loop(topic):
     text_output = ""
     if topic == "smi":
-        text_output = "The SMI index is at " + str(get_stock_price('%5ESSMI')) + " today with an increase of " + str(get_stock_percent('%5ESSMI'))+ " percentage" 
+        perc = get_stock_percent('%5ESSMI')
+        text_output = "The SMI index is at " + str(get_stock_price('%5ESSMI')) + " today with " + str("an increase" if perc > 0 else "a decrease") + " of " + str(get_stock_percent('%5ESSMI'))+ " percentage" 
+
     else:
         potential_sentences = sentences[topic]
         text_output = random.choice(potential_sentences)
