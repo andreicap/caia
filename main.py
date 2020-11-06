@@ -5,6 +5,8 @@ import speech_recognition as sr
 from speaker import Speaker
 from num2words import num2words
 import json
+import stockquotes
+
 
 speaker_obj = Speaker()
 listener = Listener()
@@ -17,6 +19,7 @@ client_data.loc[0, 'name'] = "Andrei Cap"
 client_data['liquidity'] = 999999.0
 client_data['investments'] = 186.6
 client_data['currency'] = 'CHF'
+
 
 def get_text_topic(speech_text):
     ratio = fuzz.partial_ratio(speech_text, "assets")
@@ -38,7 +41,21 @@ def analyze_text_loop(topic):
     speaker_obj.speak_text("Next question, please")
     extract_text_loop()
 
+
+def get_stock_price(stock_ticker):
+    # e.g. print(get_stock_price('%5ESSMI'))
+    stock = stockquotes.Stock(stock_ticker)
+    return stock.current_price
+
+
+def get_stock_percent(stock_ticker):
+    # print(get_stock_percent('%5ESSMI'))
+    stock = stockquotes.Stock(stock_ticker)
+    return stock.increase_percent
+
+
 if __name__ == "__main__":
+    print(get_stock_percent('%5ESSMI'))
     intro_string = "Hi, I am Ka-ya, and I will be you client advisor today! How can I help you?"
     speaker_obj.speak_text(intro_string)
     extract_text_loop()
