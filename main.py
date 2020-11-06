@@ -15,11 +15,12 @@ listener = Listener()
 topics = json.load(open("caia_logic.json"))['topics']
 sentences = json.load(open("caia_logic.json"))['sentences']
 
-client_data = pd.DataFrame()
-client_data.loc[0, 'name'] = "Andrei Cap"
-client_data['liquidity'] = 999999.0
-client_data['investments'] = 186.6
-client_data['currency'] = 'CHF'
+client_data = pd.read_csv('caia_sample_dataset.csv')
+
+def error_statement():
+    text = "I did not understand that, can you repeat please?"
+    speaker_obj.speak_text(text)
+    extract_text_loop()
 
 
 def say_what_again():
@@ -50,8 +51,9 @@ def extract_text_loop():
 
 def analyze_text_loop(topic):
     potential_sentences = sentences[topic]
-    text_output = random.choice(sequence)
-    
+    text_output = random.choice(potential_sentences)
+    text_output = text_output.format(**client_data.iloc[0].map(num2words).to_dict())
+    speaker_obj.speak_text(text_output)
     speaker_obj.speak_text("Next question, please")
     extract_text_loop()
 
