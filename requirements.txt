@@ -4,3 +4,5 @@ pyttsx3
 pandas
 SpeechRecognition
 stockquotes
+beautifulsoup4
+lxml
