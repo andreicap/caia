@@ -21,6 +21,11 @@ client_data['investments'] = 186.6
 client_data['currency'] = 'CHF'
 
 
+def say_what_again():
+    text = "Say 'what' again. Say 'what' again, I dare you, I double dare you motherfucker, say what one more Goddamn time!"
+    speaker_obj.speak_text(text)
+
+
 def get_text_topic(speech_text):
     ratio = fuzz.partial_ratio(speech_text, "assets")
     if ratio > 90:
@@ -28,6 +33,9 @@ def get_text_topic(speech_text):
 
 def extract_text_loop():
     speech_text = listener.extract_text()
+    if speech_text.lower() == "what":
+        say_what_again()
+
     topic = get_text_topic(speech_text)
     analyze_text_loop(topic)
 
@@ -55,7 +63,6 @@ def get_stock_percent(stock_ticker):
 
 
 if __name__ == "__main__":
-    print(get_stock_percent('%5ESSMI'))
     intro_string = "Hi, I am Ka-ya, and I will be you client advisor today! How can I help you?"
     speaker_obj.speak_text(intro_string)
     extract_text_loop()

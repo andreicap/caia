@@ -1,14 +1,21 @@
 {
 	"topics":{
 		"topic_assets": ["assets","asset","money","account"],
-		"topic_investments": ["investments","performance","stocks","fund"]
+		"topic_investments": ["investments","performance","stocks","fund"],
+		"topic_pillar": ["pillar", "pension", "retirement", "3A"],
+		"topic_mortgage": ["mortgage"],
+		"topic_transactions": ["transaction", "transactions", "card", "spending", "expenses"]
 	},
 	
 	"sentences":{
 		"topic_assets": ["Your assets are {data_assets}",
 						 "Your have {data_assets} in assets"],
 		"topic_investments": ["Your investments are performing {data_investments}",
-							  "Your have a {data_investments} in your investments today"]
-	}
-	
+							  "Your have a {data_investments} in your investments today"],
+		"topic_pillar": ["Your have {data_pillar_amount} in your pillar 3A and is performing {data_pillar_investments}",
+					     "Your pillar 3A is performing {data_pillar_investments}, you have now {data_pillar_amount}"],
+		"topic_mortgage": ["You have a mortgage of {data_mortgage}",
+						   "Your mortgage is {data_mortgage}"],
+		"topic_transactions":["You have made {data_trx_number} transactions in the last month, for a total of {data_trx_amount} swiss francs spent",
+							  "You have spent {data_trx_amount} swiss francs in the last month, and you have done {data_trx_number} transactions"]
 }
