@@ -1,11 +1,12 @@
 from voice_parser import Listener
 import pandas as pd
-from fuzzywuzzy import fuzz
+from fuzzywuzzy import fuzz, process
 import speech_recognition as sr
 from speaker import Speaker
 from num2words import num2words
 import json
 import stockquotes
+import random
 
 
 speaker_obj = Speaker()
@@ -27,9 +28,17 @@ def say_what_again():
 
 
 def get_text_topic(speech_text):
-    ratio = fuzz.partial_ratio(speech_text, "assets")
-    if ratio > 90:
-        return "assets"
+    max_score = 20
+    selected_topic = "no_topic"
+    for topic, tokens in topics.items():
+        token_score = process.extractOne(speech_text, tokens, scorer=fuzz.partial_ratio)
+        if token_score[1] > max_score:
+            max_score = token_score[1]
+            selected_topic = topic
+    if selected_topic == "no_topic":
+        error_statement()
+    return selected_topic
+
 
 def extract_text_loop():
     speech_text = listener.extract_text()
@@ -40,12 +49,9 @@ def extract_text_loop():
     analyze_text_loop(topic)
 
 def analyze_text_loop(topic):
-    if topic == "assets":
-        total_assets = int((client_data['investments'] + client_data['liquidity']).iloc[0])
-        total_assets_str = num2words(total_assets)
-        assets_text = f"Your total assets are {total_assets_str} swiss francs"
-        speaker_obj.speak_text(assets_text)
-
+    potential_sentences = sentences[topic]
+    text_output = random.choice(sequence)
+    
     speaker_obj.speak_text("Next question, please")
     extract_text_loop()
 
