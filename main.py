@@ -1,11 +1,12 @@
 from voice_parser import Listener
 import pandas as pd
-from fuzzywuzzy import fuzz
+from fuzzywuzzy import fuzz, process
 import speech_recognition as sr
 from speaker import Speaker
 from num2words import num2words
 import json
 import stockquotes
+import random
 
 
 speaker_obj = Speaker()
@@ -14,11 +15,12 @@ listener = Listener()
 topics = json.load(open("caia_logic.json"))['topics']
 sentences = json.load(open("caia_logic.json"))['sentences']
 
-client_data = pd.DataFrame()
-client_data.loc[0, 'name'] = "Andrei Cap"
-client_data['liquidity'] = 999999.0
-client_data['investments'] = 186.6
-client_data['currency'] = 'CHF'
+client_data = pd.read_csv('caia_sample_dataset.csv')
+
+def error_statement():
+    text = "I did not understand that, can you repeat please?"
+    speaker_obj.speak_text(text)
+    extract_text_loop()
 
 
 def say_what_again():
@@ -27,9 +29,17 @@ def say_what_again():
 
 
 def get_text_topic(speech_text):
-    ratio = fuzz.partial_ratio(speech_text, "assets")
-    if ratio > 90:
-        return "assets"
+    max_score = 20
+    selected_topic = "no_topic"
+    for topic, tokens in topics.items():
+        token_score = process.extractOne(speech_text, tokens, scorer=fuzz.partial_ratio)
+        if token_score[1] > max_score:
+            max_score = token_score[1]
+            selected_topic = topic
+    if selected_topic == "no_topic":
+        error_statement()
+    return selected_topic
+
 
 def extract_text_loop():
     speech_text = listener.extract_text()
@@ -40,12 +50,10 @@ def extract_text_loop():
     analyze_text_loop(topic)
 
 def analyze_text_loop(topic):
-    if topic == "assets":
-        total_assets = int((client_data['investments'] + client_data['liquidity']).iloc[0])
-        total_assets_str = num2words(total_assets)
-        assets_text = f"Your total assets are {total_assets_str} swiss francs"
-        speaker_obj.speak_text(assets_text)
-
+    potential_sentences = sentences[topic]
+    text_output = random.choice(potential_sentences)
+    text_output = text_output.format(**client_data.iloc[0].map(num2words).to_dict())
+    speaker_obj.speak_text(text_output)
     speaker_obj.speak_text("Next question, please")
     extract_text_loop()
 

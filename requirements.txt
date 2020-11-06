@@ -3,3 +3,4 @@ fuzzywuzzy
 pyttsx3
 pandas
 SpeechRecognition
+stockquotes
