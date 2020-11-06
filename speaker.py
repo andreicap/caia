@@ -12,6 +12,7 @@ class Speaker():
         self.change_voice_speed(250)
 
     def speak_text(self, text):
+        print(f"CAIA >> {text}")
         self.engine.say(text)
         self.engine.runAndWait()
 
