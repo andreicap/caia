@@ -7,12 +7,14 @@ import speech_recognition as sr
 class Listener():
 	def __init__(self):
 		self.recognizer = sr.Recognizer()
+		self.microphone = sr.Microphone()
+		with self.microphone as source:
+			self.recognizer.adjust_for_ambient_noise(source)
 		
 
 	def extract_text(self):
 		text = ""
-		with sr.Microphone() as source:
-			self.recognizer.adjust_for_ambient_noise(source)
+		with self.microphone as source:
 			try:
 				print("Please speak")
 				audio = self.recognizer.listen(source)
