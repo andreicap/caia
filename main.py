@@ -24,7 +24,7 @@ for col in client_data.columns:
 
 def error_statement():
     texts =["I didn't get this, but my developers will teach me later. Can you repeat please?",
-    "I didn't quite get that. Again?"]
+    "I didnt quite get that. Again?"]
     speaker_obj.speak_text(random.choice(texts))
     extract_text_loop()
 
@@ -64,15 +64,13 @@ def extract_text_loop():
 def analyze_text_loop(topic):
     text_output = ""
     if topic == "smi":
-        perc = get_stock_percent(r'%5ESSMI')
-        price = str(get_stock_price(r'%5ESSMI'))
-        text_output = rf'The SMI index is at {price} today with {str("an increase" if perc > 0 else "a decrease")} of {abs(perc)} percentage'
+        price, perc = get_stock_price_percent(r'%5ESSMI')
+        text_output = f"The SMI index is at {price} today with {str('an increase' if perc > 0 else 'a decrease')} of {abs(perc)} percentage"
     else:
         potential_sentences = sentences[topic]
         text_output = random.choice(potential_sentences)
-
-
-    text_output = text_output.format(**client_data.iloc[0].to_dict())
+        text_output = text_output.format(**client_data.iloc[0].to_dict())
+        
     speaker_obj.speak_text(text_output)
     if topic == 'topic_end':
         exit()
@@ -83,16 +81,10 @@ def analyze_text_loop(topic):
     extract_text_loop()
 
 
-def get_stock_price(stock_ticker):
-    # e.g. print(get_stock_price('%5ESSMI'))
-    stock = stockquotes.Stock(stock_ticker)
-    return stock.current_price
-
-
-def get_stock_percent(stock_ticker):
+def get_stock_price_percent(stock_ticker):
     # print(get_stock_percent('%5ESSMI'))
     stock = stockquotes.Stock(stock_ticker)
-    return stock.increase_percent
+    return (stock.current_price, stock.increase_percent)
 
 
 if __name__ == "__main__":
